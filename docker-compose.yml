@@ -1,0 +1,53 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "5050:5050"
+    env_file:
+      - backend/config/.env
+    environment:
+      - PUBNUB_USER_ID=blockchain-node-main
+      - ROOT_HOST=backend-seed
+      - POLL_ROOT=True
+      - POLL_INTERVAL=10
+    stop_grace_period: 20s
+
+  backend-peer:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    expose:
+      - "5050"
+    env_file:
+      - backend/config/.env
+    environment:
+      - PUBNUB_USER_ID=blockchain-node-peer-1
+      - ROOT_HOST=backend
+
+  backend-seed:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    expose:
+      - "5050"
+    env_file:
+      - backend/config/.env
+    environment:
+      - SEED_DATA=True
+      - PUBNUB_USER_ID=blockchain-node-seed-1
+      - ROOT_HOST=backend
+    profiles:
+      - seed
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5050
+    depends_on:
+      - backend
