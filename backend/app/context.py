@@ -43,7 +43,7 @@ class AppContext:
         """
         try:
             result = requests.get(
-                f"http://{AppConfig.ROOT_HOST}:{AppConfig.ROOT_PORT}/blockchain"
+                f"http://{AppConfig.ROOT_HOST}:{AppConfig.ROOT_PORT}/api/blockchain"
             )
             result_blockchain = Blockchain.from_json(result.json())
             self.blockchain.replace_chain(result_blockchain.chain)
