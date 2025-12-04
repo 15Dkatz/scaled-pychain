@@ -28,7 +28,8 @@ def poll_root_blockchain(blockchain, root_host, root_port, poll_interval):
 
     while not shutdown_event.is_set():
         try:
-            result = requests.get(f"http://{root_host}:{root_port}/blockchain")
+            logger.info(f"-- Polling root blockchain from root_host:root_port {root_host}:{root_port}")
+            result = requests.get(f"http://{root_host}:{root_port}/api/blockchain")
             result_blockchain = Blockchain.from_json(result.json())
             blockchain.replace_chain(result_blockchain.chain)
             logger.info(f"-- Successfully polled and updated blockchain from {root_host}")

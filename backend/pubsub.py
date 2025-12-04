@@ -66,7 +66,7 @@ class Listener(SubscribeCallback):
             print(f"-- Attempting to sync blockchain from {root_host}:{root_port}")
 
             # Request the full blockchain from the root node
-            response = requests.get(f"http://{root_host}:{root_port}/blockchain")
+            response = requests.get(f"http://{root_host}:{root_port}/api/blockchain")
             result_blockchain = Blockchain.from_json(response.json())
 
             # Replace our local chain with the synchronized chain
