@@ -25,4 +25,6 @@ build:
         dockerfile: backend/Dockerfile
 manifests: # Watches + Applies changes to these files
   rawYaml:
+    - k8s/metrics-server.yaml
+    - k8s/hpa.yaml
     - k8s/*.yaml
