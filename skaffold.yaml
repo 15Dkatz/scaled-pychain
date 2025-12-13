@@ -1,7 +1,7 @@
 apiVersion: skaffold/v4beta13
 kind: Config
 metadata:
-  name: python-blockchain
+  name: scaled-pychain
 build:
   artifacts:
     - image: backend
@@ -18,20 +18,13 @@ build:
       context: .
       docker:
         dockerfile: backend/Dockerfile
-        
+
     - image: backend-seed
       context: .
       docker:
         dockerfile: backend/Dockerfile
 manifests: # Watches + Applies changes to these files
   rawYaml:
+    - k8s/metrics-server.yaml
+    - k8s/hpa.yaml
     - k8s/*.yaml
-    # - k8s/backend-deployment.yaml
-    # - k8s/backend-peer-deployment.yaml
-    # - k8s/backend-seed-deployment.yaml
-    # - k8s/frontend-deployment.yaml
-    # - k8s/nginx-gateway.yaml
-    # - k8s/ingress.yaml
-    # - k8s/hpa.yaml
-    # - k8s/configMap.yaml
-
