@@ -1,6 +1,6 @@
 # Scaled Pychain - Kubernetes Module
 
-![Python Blockchain Logo](../python-blockchain-tutorial/python_blockchain_logo.png)
+![Python Blockchain Logo](./python_blockchain_logo.png)
 
 ## Overview
 
@@ -21,7 +21,7 @@ This module is part of a comprehensive course series:
 2. **Docker Capstone** - Containerize the application with Docker and Docker Compose
 3. **Kubernetes Module (This Repository)** - Deploy and scale the application on Kubernetes
 
-![Docker Course Logo](../docker-guides/docker_endorsed_course.png)
+![Docker Course Logo](./docker_endorsed_course.png)
 
 ## Repository Structure
 
